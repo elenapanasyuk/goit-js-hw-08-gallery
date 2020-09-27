@@ -2,8 +2,8 @@ import galleryImages from "./data/gallery-items.js";
 
 const galleryListEl = document.querySelector(".js-gallery");
 const modalImageEl = document.querySelector(".lightbox__image");
-const lightboxEl = document.querySelector(".js-lightbox");
-const closeLightboxBtn = document.querySelector(
+const modalEl = document.querySelector(".js-lightbox");
+const closeModalBtn = document.querySelector(
   '[data-action = "close-lightbox"]'
 );
 const backdropEl = document.querySelector(".lightbox__overlay");
@@ -35,7 +35,7 @@ galleryListEl.insertAdjacentHTML(
 );
 
 galleryListEl.addEventListener("click", onModalOpen);
-closeLightboxBtn.addEventListener("click", onModalClose);
+closeModalBtn.addEventListener("click", onModalClose);
 backdropEl.addEventListener("click", onBackdropClose);
 
 function onModalOpen(evt) {
@@ -44,14 +44,14 @@ function onModalOpen(evt) {
   if (evt.target.nodeName !== "IMG") {
     return;
   }
-  lightboxEl.classList.add("is-open");
+  modalEl.classList.add("is-open");
   modalImageEl.src = evt.target.dataset.source;
   modalImageEl.alt = evt.target.alt;
 }
 
 function onModalClose(evt) {
   window.removeEventListener("keydown", onEscKeyPress);
-  lightboxEl.classList.remove("is-open");
+  modalEl.classList.remove("is-open");
   modalImageEl.src = "";
   modalImageEl.alt = "";
 }
